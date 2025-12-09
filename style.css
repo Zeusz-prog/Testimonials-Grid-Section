@@ -10,6 +10,7 @@
   --testimonial-bg-light:   hsl(0, 0%, 100%);   /* korábbi --bcg-clr-jean (white) */
   --testimonial-bg-patrick: hsl(219, 29%, 14%); /* korábbi --bcg-clr-pat */
   --bcg-body: #F6F5F6;
+  --shadow-lg: 0px 20px 40px rgba(0, 0, 0, 0.12); /* Define variable */
 
   /* status (small label) colors */
   --testimonial-status-contrast: hsl(260, 100%, 95%); /* korábbi --clr-stat-dan */
@@ -41,18 +42,18 @@ body{
     background-color: var(--bcg-body);
 }
 .testimonials{
-    margin-block: clamp(73px, 15.9vw, 229px) clamp(73px, 15.1vw, 218px);
-    margin-inline: clamp(35px, 11.5vw, 165px) clamp(35px, 11.2vw, 161px);
+    margin-block: clamp(4rem, 10vw, 14rem);  /* top and bottom margins scale smoothly */
+    margin-inline: clamp(2rem, 8vw, 10rem);  /* left and right margins scale smoothly */
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 .testimonial{
-    padding: 2rem;
+    padding: clamp(1rem, 2vw, 2.5rem);
     border-radius: 2rem;
     color: var(--testimonial-name-dark); /* alap név / általános szöveg szín */
     background: var(--testimonial-bg-light); /* default (ha nincs modifier) */
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow-lg);
     position: relative;  /* EZ KELL, hogy a pseudo a kártyán belül legyen */
     overflow: visible;   /* fontos, nehogy levágja az idézőjelet */
     z-index: 1;          /* a kártya maga legyen előrébb, mint a pseudo */
@@ -66,55 +67,64 @@ body{
     font-size: var(--fontsize-stat); 
     font-weight: 500; 
 }
-.testimonial--daniel{
-    background: var(--testimonial-bg-purple);
-    color: var(--testimonial-name-light); /* név és főszöveg fehér */
+/* Shared text color for testimonials with light name color */
+.testimonial--daniel,
+.testimonial--jonathan,
+.testimonial--patrick {
+    color: var(--testimonial-name-light); /* declared once */
 }
+
+/* Shared text color for testimonials with dark name color */
+.testimonial--jeanette,
+.testimonial--kira {
+    color: var(--testimonial-name-dark);
+}
+
+/* Unique backgrounds */
+.testimonial--daniel {
+    background: var(--testimonial-bg-purple);
+}
+.testimonial--jonathan {
+    background: var(--testimonial-bg-dark);
+}
+.testimonial--patrick {
+    background: var(--testimonial-bg-patrick);
+}
+.testimonial--jeanette,
+.testimonial--kira {
+    background: var(--testimonial-bg-light);
+}
+
+/* Status colors remain unique */
 .testimonial--daniel .status { 
     color: var(--testimonial-status-contrast); 
-}
-.testimonial--jonathan{
-    background: var(--testimonial-bg-dark);
-    color: var(--testimonial-name-light);
 }
 .testimonial--jonathan .status { 
     color: var(--testimonial-status-muted); 
 }
-.testimonial--jeanette{
-    background: var(--testimonial-bg-light);
-    color: var(--testimonial-name-dark);
-}
-.testimonial--jeanette .status { 
+.testimonial--jeanette .status, 
+.testimonial--kira .status { 
     color: var(--testimonial-status-dark); 
-}
-.testimonial--patrick{
-    background: var(--testimonial-bg-patrick);
-    color: var(--testimonial-name-light);
 }
 .testimonial--patrick .status { 
     color: var(--testimonial-status-light); 
-}
-.testimonial--kira{
-    background: var(--testimonial-bg-light);
-    color: var(--testimonial-name-dark);
-}
-.testimonial--kira .status { 
-    color: var(--testimonial-status-dark); 
 }
 .testimonial__profile{
     display: flex;
     align-items: center;
 }
 .testimonial__img{
-    width: 1.75rem;
-    height: 1.75rem;
-    border-radius: 50%;
+    width: 100%;       /* Image fills the container width */
+    height: auto;      /* Height adjusts to maintain aspect ratio */
+    max-width: 1.75rem; /* Limits max size for larger screens */
+    border-radius: 50%; /* Keeps circular shape */
 }
+
 .danpic, .patpic{
     border: solid 3px hsl(264, 82%, 70%);
 }
 .testimonial__info{
-    padding-left: 1rem;
+    padding-inline-start: 1rem; /* Adds padding on the start side (left in LTR, right in RTL) */
 }
 .name, .status{
     font-weight: 500;
