@@ -1,0 +1,240 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    /* backgrounds */
+  --testimonial-bg-purple: hsl(263, 55%, 52%);  /* korábbi --bcg-clr-dan */
+  --testimonial-bg-dark:    hsl(217, 19%, 35%); /* korábbi --bcg-clr-jon */
+  --testimonial-bg-light:   hsl(0, 0%, 100%);   /* korábbi --bcg-clr-jean (white) */
+  --testimonial-bg-patrick: hsl(219, 29%, 14%); /* korábbi --bcg-clr-pat */
+  --bcg-body: #F6F5F6;
+
+  /* status (small label) colors */
+  --testimonial-status-contrast: hsl(260, 100%, 95%); /* korábbi --clr-stat-dan */
+  --testimonial-status-muted:    #A3AAB4;            /* korábbi --clr-stat-jon */
+  --testimonial-status-dark:     hsl(224, 10%, 45%);  /* korábbi --clr-stat-jean */
+  --testimonial-status-light:    hsl(0, 0%, 100%);    /* korábbi --clr-stat-pat */
+
+  /* name colors (a kártya alap szövegének öröklődése) */
+  --testimonial-name-light: hsl(0, 0%, 100%); /* világos (fehér) név white*/
+  --testimonial-name-dark:  hsl(217, 19%, 35%); /* sötét név gray 500*/
+  --testimonial-title-gray: hsl(0, 0%, 81%);
+  --testimonial-quote-purple50: hsl(260, 100%, 95%);
+  --testimonial-quote-gray100: hsl(214, 17%, 92%);
+
+  /* tipográfia változók maradnak */
+  --fontsize-name: clamp(0.7rem, 1.2vw, 0.9rem);
+  --fontsize-stat: clamp(0.6rem, 1vw, 0.8rem);
+  --fontsize-title: clamp(1rem, 2vw, 1.25rem);
+}
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    background-color: var(--bcg-body);
+}
+.testimonials{
+    margin-block: clamp(73px, 15.9vw, 229px) clamp(73px, 15.1vw, 218px);
+    margin-inline: clamp(35px, 11.5vw, 165px) clamp(35px, 11.2vw, 161px);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.testimonial{
+    padding: 2rem;
+    border-radius: 2rem;
+    color: var(--testimonial-name-dark); /* alap név / általános szöveg szín */
+    background: var(--testimonial-bg-light); /* default (ha nincs modifier) */
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.12);
+    position: relative;  /* EZ KELL, hogy a pseudo a kártyán belül legyen */
+    overflow: visible;   /* fontos, nehogy levágja az idézőjelet */
+    z-index: 1;          /* a kártya maga legyen előrébb, mint a pseudo */
+}
+.testimonial .name { 
+    font-size: var(--fontsize-name); 
+    font-weight: 500; 
+    line-height: 1.1; 
+}
+.testimonial .status { 
+    font-size: var(--fontsize-stat); 
+    font-weight: 500; 
+}
+.testimonial--daniel{
+    background: var(--testimonial-bg-purple);
+    color: var(--testimonial-name-light); /* név és főszöveg fehér */
+}
+.testimonial--daniel .status { 
+    color: var(--testimonial-status-contrast); 
+}
+.testimonial--jonathan{
+    background: var(--testimonial-bg-dark);
+    color: var(--testimonial-name-light);
+}
+.testimonial--jonathan .status { 
+    color: var(--testimonial-status-muted); 
+}
+.testimonial--jeanette{
+    background: var(--testimonial-bg-light);
+    color: var(--testimonial-name-dark);
+}
+.testimonial--jeanette .status { 
+    color: var(--testimonial-status-dark); 
+}
+.testimonial--patrick{
+    background: var(--testimonial-bg-patrick);
+    color: var(--testimonial-name-light);
+}
+.testimonial--patrick .status { 
+    color: var(--testimonial-status-light); 
+}
+.testimonial--kira{
+    background: var(--testimonial-bg-light);
+    color: var(--testimonial-name-dark);
+}
+.testimonial--kira .status { 
+    color: var(--testimonial-status-dark); 
+}
+.testimonial__profile{
+    display: flex;
+    align-items: center;
+}
+.testimonial__img{
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+}
+.danpic, .patpic{
+    border: solid 3px hsl(264, 82%, 70%);
+}
+.testimonial__info{
+    padding-left: 1rem;
+}
+.name, .status{
+    font-weight: 500;
+    line-height: 1.1;
+}
+.name{
+    font-size: var(--fontsize-name);
+}
+.status{
+    font-size: var(--fontsize-stat);
+}
+.testimonial__title{
+    font-size: var(--fontsize-title);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--testimonial-name-dark);
+    margin: 1rem 0;
+}
+.testimonial--daniel .testimonial__title{
+    color: var(--testimonial-name-light);
+}
+.testimonial--jonathan .testimonial__title{
+    color: var(--testimonial-name-light);
+}
+.testimonial--patrick .testimonial__title{
+    color: var(--testimonial-title-gray);
+}
+.testimonial__quote{
+    color: var(--testimonial-status-dark);
+    font-size: var(--fontsize-name);
+    line-height: 1.4;
+}
+.testimonial--daniel .testimonial__quote{
+    color: var(--testimonial-quote-purple50);
+}
+.testimonial--jonathan .testimonial__quote{
+    color: var(--testimonial-quote-gray100);
+}
+.testimonial--patrick .testimonial__quote{
+    color: var(--testimonial-quote-gray100);
+}
+.testimonial--daniel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: clamp(7rem, 12vw, 14rem);
+    width: 7rem;
+    height: 6rem;
+    background-image: url("/images/bg-pattern-quotation.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -1;  /* alatta van a tartalomnak */
+    opacity: 0;  /* MOBILON ALAPBÓL NEM LÁTSZIK */
+    pointer-events: none;
+}
+
+/*MEDIA QUERY*/
+
+@media (min-width: 48rem) {
+    .testimonials{
+        display: grid;
+        grid-template-areas: 
+        "Daniel Daniel"
+        "Jonathan Jeanette"
+        "Patrick Patrick"
+        "Kira Kira";
+        grid-template-columns: 1fr 1fr;
+    }
+    .testimonial--daniel{
+        grid-area: Daniel;
+    }
+    .testimonial--patrick{
+        grid-area: Patrick;
+    }
+    .testimonial--kira{
+        grid-area: Kira;
+    }
+    .testimonial--jonathan{
+    grid-area: Jonathan;
+    }
+    .testimonial--jeanette{
+    grid-area: Jeanette;
+    }
+    .testimonial--daniel::before {
+        opacity: 1;
+    }
+}
+@media (min-width: 70rem) {
+
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .testimonial--daniel {
+    grid-column: 1 / span 2; /* col1–2 */
+    grid-row: 1;
+  }
+
+  .testimonial--jonathan {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .testimonial--kira {
+    grid-column: 4;
+    grid-row: 1 / span 2; /* magas, két sor */
+  }
+
+  .testimonial--jeanette {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .testimonial--patrick {
+    grid-column: 2 / span 2; /* col2–3 */
+    grid-row: 2;
+  }
+  .testimonial--daniel::before {
+    right: clamp(2rem, 5vw, 3rem);
+  }
+}
