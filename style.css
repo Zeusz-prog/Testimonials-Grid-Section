@@ -50,7 +50,7 @@ body{
 }
 .testimonial{
     padding: clamp(1rem, 2vw, 2.5rem);
-    border-radius: 2rem;
+    border-radius: 0.5rem;
     color: var(--testimonial-name-dark); /* alap név / általános szöveg szín */
     background: var(--testimonial-bg-light); /* default (ha nincs modifier) */
     box-shadow: var(--shadow-lg);
